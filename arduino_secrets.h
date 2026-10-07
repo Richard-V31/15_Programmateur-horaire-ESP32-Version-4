@@ -8,5 +8,5 @@
 // Mode OTA
 #define SECRET_OTA_PASSWORD "xxxx"
 
-// Mode AP secours  http://192.168.4.1
+// Mode AP secours  http://192.168.5.1
 #define SECRET_AP_PASS "Mot de passe"  // 8 caractéres minimum
