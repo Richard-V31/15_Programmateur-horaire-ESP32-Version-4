@@ -19,18 +19,18 @@ Fonctions principales :
 - pilotage d'un nombre configurable de relais ;
 - mode **AUTO** avec programmation horaire ;
 - mode **MANUEL** avec forçage ON/OFF ;
-- 🆕 **forçage temporaire** (ON ou OFF pendant une durée choisie, puis retour automatique en AUTO) ;
+- forçage temporaire** (ON ou OFF pendant une durée choisie, puis retour automatique en AUTO) ;
 - jusqu'à `MAX_PLAGES` plages horaires par relais ;
 - horaires réglables **à la minute près** ;
 - plages pouvant traverser minuit ;
-- 🆕 **jours de la semaine** au choix pour chaque plage (ex. du lundi au vendredi) ;
+- jours de la semaine au choix pour chaque plage (ex. du lundi au vendredi) ;
 - effacement complet des plages possible ;
 - sauvegarde des réglages dans la mémoire flash **NVS** ;
 - interface Web embarquée directement dans l'ESP32 ;
 - interface adaptée aux smartphones ;
-- 🆕 **noms et sous-titres** des programmations modifiables depuis la page Web ;
+- noms et sous-titres des programmations modifiables depuis la page Web ;
 - accès par adresse IP et par **mDNS** (`richardv.local`) ;
-- affichage sur OLED SSD1306 128×64 (🆕 en-tête centré : date + heure, nom de la box, adresse IP) ;
+- affichage sur OLED SSD1306 128×64 ( en-tête centré : date + heure, nom de la box, adresse IP) ;
 - boutons physiques optionnels avec anti-rebond ;
 - connexion automatique au meilleur réseau Wi-Fi connu ;
 - reconnexion Wi-Fi non bloquante ;
@@ -48,7 +48,7 @@ Fonctions principales :
 - **OTA fiabilisée** et rechargement automatique de la page après une mise à jour (V3.6) ;
 - **commutation box ↔ secours stable et rapide**, même après plusieurs coupures successives (V3.7 à V3.10) ;
 - **diagnostic des redémarrages** (cause, durée de fonctionnement, mémoire libre) dans « Infos système » (V3.7) ;
-- 🆕 **fiabilité V4** : verrou contre les accès simultanés (page Web / boucle principale) et commandes Web explicites en POST.
+- fiabilité V4 : verrou contre les accès simultanés (page Web / boucle principale) et commandes Web explicites en POST.
 
 ### Nouveautés des versions 3.x
 
@@ -274,7 +274,7 @@ Un appui bref :
 
 1. inverse l'état du relais ;
 2. passe automatiquement le relais en mode MANUEL ;
-3. 🆕 annule un éventuel forçage temporaire en cours ;
+3. annule un éventuel forçage temporaire en cours ;
 4. sauvegarde le nouvel état dans la NVS.
 
 Un relais forcé en manuel n'est plus piloté par ses horaires tant qu'il reste en mode MANUEL.
@@ -405,7 +405,7 @@ Plusieurs plages sont séparées par une virgule :
 06:32-08:10,09:00-13:15,18:45-22:30
 ```
 
-## 🆕 Jours de la semaine (V4.0)
+## Jours de la semaine (V4.0)
 
 Chaque plage peut être limitée à certains jours en ajoutant `/` suivi des numéros de jours :
 
@@ -457,7 +457,7 @@ Il n'est pas nécessaire de créer deux plages.
 
 La fonction `plageEstActive()` traite automatiquement ce cas.
 
-### 🆕 Avec les jours de la semaine (V4.0)
+### Avec les jours de la semaine (V4.0)
 
 Une plage qui traverse minuit appartient au jour où elle **démarre** :
 
@@ -536,8 +536,8 @@ Le programme vérifie notamment :
 - validité des minutes ;
 - respect du nombre maximum de plages ;
 - impossibilité d'avoir une plage de durée nulle ;
-- 🆕 format strict des heures : uniquement des chiffres (`ab:cd` est refusé) ;
-- 🆕 jours valides (chiffres 1 à 7, au moins un jour).
+- format strict des heures : uniquement des chiffres (`ab:cd` est refusé) ;
+- jours valides (chiffres 1 à 7, au moins un jour).
 
 Exemple refusé :
 
@@ -576,7 +576,7 @@ const char index_html[] PROGMEM = R"rawliteral(
 
 L'interface s'adapte automatiquement au nombre de relais.
 
-## 🆕 Fonctions de la page en V4
+## Fonctions de la page en V4
 
 | Élément | Action |
 |---|---|
@@ -798,7 +798,7 @@ La tentative est espacée dans le temps afin d'éviter une boucle de reconnexion
 
 Chaque recherche (scan Wi-Fi) perturbe brièvement le réseau de secours : l'intervalle est donc allongé pour ne pas gêner le smartphone.
 
-### 🆕 V3.4 – Recherche courte et nouvel essai immédiat
+###  Recherche courte et nouvel essai immédiat
 
 - Pendant le secours, chaque recherche n'écoute que **120 ms par canal** (`SCAN_MS_PAR_CANAL_SECOURS`), soit environ **1,6 s** de perturbation au lieu de 4 s :
 
@@ -808,7 +808,7 @@ WiFi.scanNetworks(true, false, false, apSecoursActif ? SCAN_MS_PAR_CANAL_SECOURS
 
 - Un réseau dont la connexion a échoué est mis en « liste noire » 30 s (`BLACKLIST_DURATION`). Si c'est **le seul réseau connu visible** (box qui finit de redémarrer), il est désormais **réessayé immédiatement** au lieu d'être ignoré.
 
-### 🆕 V3.7 à V3.10 – Commutation box ↔ secours fiable sur la durée
+###  Commutation box ↔ secours fiable sur la durée
 
 Avant la V3.7, la 1re coupure de box était bien gérée, mais les suivantes prenaient **45 s à 1 min 20** pour basculer sur le secours, avec parfois un redémarrage de l'ESP32. Quatre corrections :
 
@@ -1106,8 +1106,6 @@ boxConnectee();            // V3.9 : box réellement connectée (statut + IP val
 dnsServer.processNextRequest(); // V3.2 : serveur DNS du réseau de secours
 ```
 
-> ⚠️ **Sécurité** : toute personne à portée du Wi-Fi connaissant ce mot de passe peut commander les relais (portail, garage…). Remplacer impérativement le mot de passe par défaut.
-
 ---
 
 # 29. 🕒 Réglage manuel de l'heure
@@ -1244,7 +1242,7 @@ Cette commande :
 - ne supprime pas les horaires ;
 - ne réinitialise pas la NVS ;
 - remet tous les relais en AUTO ;
-- 🆕 annule les forçages temporaires en cours ;
+- annule les forçages temporaires en cours ;
 - applique immédiatement la programmation actuelle.
 
 Cette route ne demande pas d'authentification.
@@ -1261,14 +1259,14 @@ Les réglages sont sauvegardés dans la mémoire NVS de l'ESP32 via :
 
 Sont notamment conservés :
 
-- plages horaires (🆕 avec leurs jours de la semaine) ;
+- plages horaires (avec leurs jours de la semaine) ;
 - mode AUTO/MANUEL ;
 - état mémorisé du relais ;
-- 🆕 nom et sous-titre saisis sur la page Web (clés `1nm`, `1sn`…).
+- nom et sous-titre saisis sur la page Web (clés `1nm`, `1sn`…).
 
 Ne sont **pas** conservés : le forçage temporaire et l'heure réglée à la main.
 
-🆕 Depuis la V4.0, chaque lecture/écriture NVS se fait sous un **verrou** (mutex) : une sauvegarde par la page Web et une sauvegarde par un bouton poussoir ne peuvent plus se chevaucher.
+Depuis la V4.0, chaque lecture/écriture NVS se fait sous un **verrou** (mutex) : une sauvegarde par la page Web et une sauvegarde par un bouton poussoir ne peuvent plus se chevaucher.
 
 Les réglages survivent à :
 
@@ -1357,7 +1355,7 @@ Cela permet de vérifier qu'un nouveau firmware est réellement exécuté.
 
 La NVS contient également la signature du firmware précédent.
 
-## 🆕 V3.7 – Diagnostic des redémarrages
+##  – Diagnostic des redémarrages
 
 La fenêtre « Infos système » affiche aussi :
 
@@ -1405,7 +1403,7 @@ Le mot de passe OTA est :
 SECRET_OTA_PASSWORD
 ```
 
-## 🆕 V3.6 – OTA fiabilisée
+## V3.6 – OTA fiabilisée
 
 Au début du transfert (`ArduinoOTA.onStart`), le programme libère le Wi-Fi et le processeur :
 
@@ -1497,7 +1495,7 @@ Retourne notamment :
 - nom ;
 - sous-nom ;
 - couleur ;
-- 🆕 nom et sous-titre affichés (`name`, `sub`) et d'origine (`nameDef`, `subDef`) ;
+- nom et sous-titre affichés (`name`, `sub`) et d'origine (`nameDef`, `subDef`) ;
 - nombre maximal de plages (`maxPlages`) et longueur maximale d'un nom (`maxNom`).
 
 ---
@@ -1520,8 +1518,8 @@ Retourne notamment :
 - `heureOK` (heure connue ou non) ;
 - `heureSource` : `ntp`, `manuelle` ou `aucune` ;
 - `build` : signature du firmware (V3.6, rechargement automatique de la page après une OTA) ;
-- 🆕 `jour` : jour de la semaine (0 = lundi … 6 = dimanche) ;
-- 🆕 par relais : `forcage` (secondes restantes d'un forçage temporaire, `-1` = aucun), `actives` (plages en cours) et `suivante` (prochaine plage à démarrer).
+- `jour` : jour de la semaine (0 = lundi … 6 = dimanche) ;
+- par relais : `forcage` (secondes restantes d'un forçage temporaire, `-1` = aucun), `actives` (plages en cours) et `suivante` (prochaine plage à démarrer).
 
 ---
 
@@ -1549,7 +1547,7 @@ Retourne notamment :
 
 ---
 
-## 🆕 Mode AUTO / MANUEL (V4.0)
+## Mode AUTO / MANUEL (V4.0)
 
 ```text
 POST /set-mode     id=1  auto=1     (1 = AUTO, 0 = MANUEL)
@@ -1559,7 +1557,7 @@ Passer en AUTO annule aussi un éventuel forçage temporaire.
 
 ---
 
-## 🆕 Forçage ON / OFF (V4.0)
+## Forçage ON / OFF (V4.0)
 
 ```text
 POST /set-state    id=1  etat=1               forçage permanent (passe en MANUEL)
@@ -1576,7 +1574,7 @@ curl -X POST http://richardv.local/set-state -d "id=1&etat=1&duree=30"
 
 ---
 
-## 🆕 Commande groupée (V4.0)
+## Commande groupée (V4.0)
 
 ```text
 POST /all    action=on | off | auto
@@ -1586,7 +1584,7 @@ POST /all    action=on | off | auto
 
 ---
 
-## 🆕 Renommer une programmation (V4.0)
+## Renommer une programmation (V4.0)
 
 ```text
 POST /set-noms    id=1  nom=Arrosage  sous=Potager
@@ -1612,7 +1610,7 @@ avec :
 plages=06:30-08:00,18:45-22:30
 ```
 
-🆕 avec jours de la semaine :
+ avec jours de la semaine :
 
 ```text
 plages=06:30-08:00/1-5,18:45-22:30
@@ -1726,7 +1724,7 @@ effectue notamment :
 
 La programmation horaire et la surveillance Wi-Fi sont traitées environ toutes les secondes.
 
-🆕 Les routes du serveur Web s'exécutent dans une **autre tâche** que `loop()`. Depuis la V4.0, toute lecture ou modification des relais, des plages et de la NVS se fait sous un verrou récursif (`Verrou v;`), libéré automatiquement à la fin du bloc.
+Les routes du serveur Web s'exécutent dans une **autre tâche** que `loop()`. Depuis la V4.0, toute lecture ou modification des relais, des plages et de la NVS se fait sous un verrou récursif (`Verrou v;`), libéré automatiquement à la fin du bloc.
 
 Les boutons et l'OTA sont traités à chaque passage de `loop()` pour conserver une bonne réactivité.
 
@@ -1734,7 +1732,7 @@ Les boutons et l'OTA sont traités à chaque passage de `loop()` pour conserver 
 
 # 43. OLED
 
-🆕 Depuis la V4.1, l'en-tête est **centré** sur 3 lignes :
+Depuis la V4.1, l'en-tête est **centré** sur 3 lignes :
 
 ```text
    Mardi 06 Oct - 18:14
@@ -1847,7 +1845,7 @@ arduino_secrets.h
 
 Le nom du dossier Arduino doit correspondre au nom principal du sketch : `Programmateur_horaire_ESP32_V4/`.
 
-## 🆕 Place en mémoire programme
+## Place en mémoire programme
 
 La V4 occupe environ **93 %** de la mémoire programme avec le schéma de partition par défaut (1,2 Mo pour le programme, compatible OTA). Pour de futurs ajouts, choisir :
 
@@ -1900,8 +1898,8 @@ Pour chaque relais :
 8. revenir en AUTO ;
 9. programmer une plage très courte ;
 10. vérifier le changement automatique ;
-11. 🆕 lancer un forçage temporaire de 1 min (durée libre) et vérifier le bandeau, puis le retour automatique en AUTO ;
-12. 🆕 relancer un forçage temporaire puis appuyer sur **Annuler**.
+11. lancer un forçage temporaire de 1 min (durée libre) et vérifier le bandeau, puis le retour automatique en AUTO ;
+12. relancer un forçage temporaire puis appuyer sur **Annuler**.
 
 ## 🆕 Test des jours de la semaine
 
@@ -2126,8 +2124,8 @@ Vérifier :
 - heure valide ;
 - minutes comprises entre `00` et `59` ;
 - plage non nulle ;
-- 🆕 au moins un jour sélectionné pour chaque plage ;
-- 🆕 jours écrits `/12345` ou `/1-5` (pas de virgule entre les jours).
+- au moins un jour sélectionné pour chaque plage ;
+- jours écrits `/12345` ou `/1-5` (pas de virgule entre les jours).
 
 Exemples :
 
@@ -2279,11 +2277,11 @@ Elle ne doit changer que si la structure NVS change.
 
 MANUEL prend le contrôle du relais jusqu'au retour en AUTO.
 
-## 🆕 Le forçage temporaire se superpose à AUTO
+## Le forçage temporaire se superpose à AUTO
 
 Le relais reste en AUTO pendant un forçage temporaire ; la programmation reprend toute seule à la fin.
 
-## 🆕 Les commandes Web indiquent l'état voulu
+## Les commandes Web indiquent l'état voulu
 
 `/set-mode` et `/set-state` ne « basculent » pas : elles fixent un état. Répéter une commande est sans danger.
 
@@ -2372,15 +2370,15 @@ Ne jamais manipuler un câblage secteur sous tension.
 - [ ] mode MANUEL testé
 - [ ] retour AUTO testé
 - [ ] charges réelles testées avec précautions
-- [ ] 🆕 `SECRET_AP_PASS` personnalisé
-- [ ] 🆕 réseau `ESP32_Secours` testé avec le smartphone
-- [ ] 🆕 réglage manuel de l'heure testé
-- [ ] 🆕 plusieurs coupures de box successives testées (bascule toujours rapide)
-- [ ] 🆕 « Dernier redémarrage » et « Allumé depuis » vérifiés dans Infos système
-- [ ] 🆕 plages par jour de la semaine testées
-- [ ] 🆕 forçage temporaire testé (fin automatique et bouton Annuler)
-- [ ] 🆕 noms des programmations personnalisés
-- [ ] 🆕 raccourcis ou scripts utilisant `/toggle-mode` ou `/force-state` remplacés par `/set-mode` / `/set-state`
+- [ ] `SECRET_AP_PASS` personnalisé
+- [ ] réseau `ESP32_Secours` testé avec le smartphone
+- [ ] réglage manuel de l'heure testé
+- [ ] plusieurs coupures de box successives testées (bascule toujours rapide)
+- [ ] « Dernier redémarrage » et « Allumé depuis » vérifiés dans Infos système
+- [ ] plages par jour de la semaine testées
+- [ ] forçage temporaire testé (fin automatique et bouton Annuler)
+- [ ] noms des programmations personnalisés
+- [ ] raccourcis ou scripts utilisant `/toggle-mode` ou `/force-state` remplacés par `/set-mode` / `/set-state`
 
 ---
 
