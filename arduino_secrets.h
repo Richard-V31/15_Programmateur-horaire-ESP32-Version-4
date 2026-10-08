@@ -1,9 +1,9 @@
-#define SECRET_SSID  "Box 1"
-#define SECRET_PASS  "Box 1"
-#define SECRET_SSID2 "Box 2"
-#define SECRET_PASS2 "Box 2"
-//#define SECRET_SSID3 "Nouvelle Box"
-//#define SECRET_PASS3 "Mot de passe"
+#define SECRET_SSID  "SSID Box 1"
+#define SECRET_PASS  "Mot de passe Box 1"
+#define SECRET_SSID2 "SSID Box 2"
+#define SECRET_PASS2 "Mot de passe Box 2"
+//#define SECRET_SSID3 "SSID Box 3"
+//#define SECRET_PASS3 "Mot de passe Box 3"
 
 // Mode OTA
 #define SECRET_OTA_PASSWORD "Mot de passe"
